@@ -1,6 +1,14 @@
 <?php
 
 return array(
-    '/' => 'index',
-    'admin' => 'admin/login'
+    '/' => array(
+        'path' => '',
+        'controller' => '',
+        'action' => '',
+    ),
+    'tasks' => array(
+        'path' => 'task',
+        'controller' => 'task',
+        'action' => 'index',
+    ),
 );

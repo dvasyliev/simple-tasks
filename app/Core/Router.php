@@ -13,8 +13,8 @@ class Router
 
     public function getUri()
     {
-        if (!empty($_SERVER['REQUEST_URI'])):
-            return trim($_SERVER['REQUEST_URI'], '/');
+        if ( !empty( $_SERVER['REQUEST_URI'] ) ):
+            return trim( $_SERVER['REQUEST_URI'], '/' );
         endif;
     }
 
@@ -22,26 +22,28 @@ class Router
     {
         $this->uri = $this->getUri();
 
-        foreach ($this->routes as $uriPattern => $route):
-            if (preg_match('~' . $uriPattern . '~', $this->uri)):
-                $segments = explode('/', $route);
+        foreach ( $this->routes as $uriPattern => $route ):
+            if ( preg_match( '~' . $uriPattern . '~', $this->uri ) ):
+                $controllerFolder = $route[ 'path' ];
+                $controllerName = $route[ 'controller' ];
+                $controllerAction = $route[ 'action' ];
 
-                $controllerName = ucfirst(array_shift($segments));
-                $actionName = array_shift($segments);
-                $controllerFile = CONTROLLER . $controllerName . '.php';
+                $controllerFile = CONTROLLER . '/' . $controllerFolder . '/' . $controllerName . '.php';
 
-                if(file_exists($controllerFile)):
+                if( file_exists( $controllerFile ) ):
                     include_once $controllerFile;
 
-                    $controller = new $controllerName;
+                    $controllerClass = ucfirst($controllerName) . 'Controller';
+                    $controller = new $controllerClass;
 
-                    if(method_exists($controller, $actionName)):
-                        $controller->$actionName();
+                    if( method_exists( $controller, $controllerAction ) ):
+                        $controller->$controllerAction();
                     else:
-                        throw new Exception('Error: Method ' . $actionName . ' not exist in file ' . $controllerFile . '.');
+                        throw new Exception('Error: Could not find method ' . $controllerAction . ' in file ' . $controllerFile . '.');
                     endif;
+
                 else:
-                    throw new Exception('Error: File ' . $controllerFile . ' not found.');
+                    throw new Exception( 'Error: Could not load controller ' . $controllerFile . '!' );
                 endif;
             endif;
         endforeach;
