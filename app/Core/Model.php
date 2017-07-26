@@ -4,7 +4,7 @@ class Model
 {
     public function load( $model )
     {
-        $file = MODEL . '/' . $model . '.php';
+        $file = DIR_MODEL . '/' . $model . '.php';
 
         if( file_exists( $file ) ):
             // Подключаем модель

@@ -4,7 +4,7 @@ class View
 {
     public function render( $template, $data = array() )
     {
-        $file = TEMPLATE . '/' . $template . '.php';
+        $file = DIR_TEMPLATE . '/' . $template . '.php';
 
         if( file_exists( $file ) ):
             // Преобразовуем масив данных в переменные

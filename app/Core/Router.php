@@ -7,7 +7,7 @@ class Router
 
     public function __construct()
     {
-        $routePath = CONFIG . '/routes.php';
+        $routePath = DIR_CONFIG . '/routes.php';
         $this->routes = include $routePath;
     }
 
@@ -28,7 +28,7 @@ class Router
                 $controllerName = $route[ 'controller' ];
                 $controllerAction = $route[ 'action' ];
 
-                $controllerFile = CONTROLLER . '/' . $controllerFolder . '/' . $controllerName . '.php';
+                $controllerFile = DIR_CONTROLLER . '/' . $controllerFolder . '/' . $controllerName . '.php';
 
                 if( file_exists( $controllerFile ) ):
                     include_once $controllerFile;
