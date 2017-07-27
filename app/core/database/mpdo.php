@@ -90,4 +90,14 @@ final class mPDO
             return $result;
         }
     }
+
+    public function escape( $value )
+    {
+        // Екранируем символы, из-за которых могут возникнуть ошибки в запросе
+        return str_replace(
+            array( "\\", "\0", "\n", "\r", "\x1a", "'", '"' ),
+            array( "\\\\", "\\0", "\\n", "\\r", "\Z", "\'", '\"' ),
+            $value
+        );
+    }
 }

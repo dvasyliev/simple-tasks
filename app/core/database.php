@@ -18,4 +18,13 @@ class DB
     {
         return $this->db->query( $sql );
     }
+
+    public function escape( $value )
+    {
+        return $this->db->escape( $value );
+    }
+
+    public function __destruct() {
+        $this->pdo = null;
+    }
 }
