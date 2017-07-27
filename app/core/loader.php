@@ -43,20 +43,9 @@ final class Loader
             // Преобразовуем масив данных в переменные
             extract( $data );
 
-            // Включение буферизации вывода
-            ob_start();
-
             include $file;
-
-            // Запись содержимого из буфера вывода в переменную '$output'
-            $output = ob_get_contents();
-
-            // Очистка буфера вывода и отключение буферизации вывода
-            ob_end_clean();
         else:
             trigger_error( 'Error: Could not load template ' . $file . '!' );
         endif;
-
-        return $output;
     }
 }
