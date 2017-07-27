@@ -1,10 +1,18 @@
 <?php
 
-require_once DIR_CORE . '/Model.php';
-require_once DIR_CORE . '/View.php';
-require_once DIR_CORE . '/Controller.php';
+// Подключаем клас регистратора
+require_once DIR_CORE . '/registry.php';
 
-require_once DIR_CORE . '/Router.php';
+// Подключаем клас маршрутизатора
+require_once DIR_CORE . '/router.php';
 
-$router = new Router();
-$router->start();
+// Подключаем класс загрузчика
+require_once DIR_CORE . '/loader.php';
+
+// Подключаем классы для работы с базой данных
+require_once DIR_CORE . '/database/mpdo.php';
+require_once DIR_CORE . '/database.php';
+
+// Подключаем класс Контролер, Модель
+require_once DIR_CORE . '/controller.php';
+require_once DIR_CORE . '/model.php';
