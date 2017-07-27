@@ -33,7 +33,10 @@ class Router
 
                 if( file_exists( $this->file ) ):
                     // Определяем название класса контролера и метода
-                    $this->class = ucfirst($route[ 'controller' ]) . 'Controller';
+                    // Получаем название класса контроллера
+                    $route[ 'controller' ] = ucwords( $route[ 'controller' ] );
+                    $controllerName = ucwords(  $route[ 'path' ] ) . ucwords(  $route[ 'controller' ] );
+                    $this->class = 'Controller' . $controllerName;
                     $this->action = $route[ 'action' ];
 
                     // Подключаем контролер
