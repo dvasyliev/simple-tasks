@@ -2,8 +2,10 @@
 
 class Router
 {
+    private $file;
+    private $class;
+    private $action;
     private $routes;
-    private $uri;
 
     public function __construct()
     {
@@ -13,37 +15,45 @@ class Router
 
     public function getUri()
     {
-        if ( !empty( $_SERVER['REQUEST_URI'] ) ):
-            return trim( $_SERVER['REQUEST_URI'], '/' );
+        if ( !empty( $_SERVER[ 'REQUEST_URI' ] ) ):
+            return trim( $_SERVER[ 'REQUEST_URI' ], '/' );
         endif;
     }
 
-    public function start()
+    public function start( $registry )
     {
-        $this->uri = $this->getUri();
+        $uri = $this->getUri();
 
+        // Перебираем все полученные маршруты
         foreach ( $this->routes as $uriPattern => $route ):
-            if ( preg_match( '~' . $uriPattern . '~', $this->uri ) ):
-                $controllerFolder = $route[ 'path' ];
-                $controllerName = $route[ 'controller' ];
-                $controllerAction = $route[ 'action' ];
+            // Проверяем существует ли текуший маршрут в этом масиве
+            if ( preg_match( '~' . $uriPattern . '~', $uri ) ):
+                // Определяем файл контролера
+                $this->file = DIR_CONTROLLER . '/' . $route[ 'path' ] . '/' . $route[ 'controller' ] . '.php';
 
-                $controllerFile = DIR_CONTROLLER . '/' . $controllerFolder . '/' . $controllerName . '.php';
+                if( file_exists( $this->file ) ):
+                    // Определяем название класса контролера и метода
+                    $this->class = ucfirst($route[ 'controller' ]) . 'Controller';
+                    $this->action = $route[ 'action' ];
 
-                if( file_exists( $controllerFile ) ):
-                    include_once $controllerFile;
+                    // Подключаем контролер
+                    include_once $this->file;
 
-                    $controllerClass = ucfirst($controllerName) . 'Controller';
-                    $controller = new $controllerClass;
+                    // Создаем екземпляр класса контролера и передаем
+                    // в него екземпляр класса регистраора
+                    $controller = new $this->class( $registry );
 
-                    if( method_exists( $controller, $controllerAction ) ):
-                        $controller->$controllerAction();
+                    // Проверяем, может ли быть вызвано
+                    // значение переменной в качестве функции
+                    if( is_callable( array( $controller, $this->action ) ) ):
+                        // Вызываем метод контроллера
+                        call_user_func( array( $controller, $this->action ) );
                     else:
-                        throw new Exception('Error: Could not find method ' . $controllerAction . ' in file ' . $controllerFile . '.');
+                        trigger_error('Error: Could not find method ' . $this->action . ' in file ' . $this->file . '.');
                     endif;
 
                 else:
-                    throw new Exception( 'Error: Could not load controller ' . $controllerFile . '!' );
+                    trigger_error( 'Error: Could not load controller ' . $this->file . '!' );
                 endif;
             endif;
         endforeach;
