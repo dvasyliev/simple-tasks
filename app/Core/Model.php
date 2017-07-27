@@ -1,16 +1,21 @@
 <?php
 
-class Model
+abstract class Model
 {
-    public function load( $model )
-    {
-        $file = DIR_MODEL . '/' . $model . '.php';
+    protected $registry;
 
-        if( file_exists( $file ) ):
-            // Подключаем модель
-            include_once $file;
-        else:
-            throw new Exception( 'Error: Could not load model ' . $file . '!' );
-        endif;
+    public function __construct( $registry )
+    {
+        $this->registry = $registry;
+    }
+
+    public function __get( $key )
+    {
+        return $this->registry->get( $key );
+    }
+
+    public function __set( $key, $value )
+    {
+        return $this->registry->set( $key, $value );
     }
 }

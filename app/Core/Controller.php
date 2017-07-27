@@ -1,18 +1,21 @@
 <?php
 
-class Controller
+abstract class Controller
 {
-    public $model;
-    public $view;
+    protected $registry;
 
-    public function __construct()
+    public function __construct( $registry )
     {
-        $this->view = new View();
-        $this->model = new Model();
+        $this->registry = $registry;
     }
 
-    public function index()
+    public function __get( $key )
     {
-        echo 'Controller loaded!';
+        return $this->registry->get( $key );
+    }
+
+    public function __set( $key, $value )
+    {
+        return $this->registry->set( $key, $value );
     }
 }
