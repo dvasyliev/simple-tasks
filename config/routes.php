@@ -1,14 +1,14 @@
 <?php
 
 return array(
-    '/' => array(
-        'path' => '',
-        'controller' => '',
-        'action' => '',
+    "tasks" => array(
+        "path" => "task",
+        "controller" => "task",
+        "action" => "index",
     ),
-    'tasks' => array(
-        'path' => 'task',
-        'controller' => 'task',
-        'action' => 'index',
+    "tasks/add" => array(
+        "path" => "task",
+        "controller" => "task",
+        "action" => "add",
     ),
 );
