@@ -7,7 +7,7 @@ class Request {
     public $files = array();
     public $server = array();
 
-    public function __constrct()
+    public function __construct()
     {
         $this->get = $this->clean( $_GET );
         $this->post = $this->clean( $_POST );
@@ -26,7 +26,7 @@ class Request {
                 $data[ $this->clean( $key ) ] = $this->clean( $value );
             }
         else:
-            $data = htmlspecialchars( $data,  ENT_COMPAT, 'UTF_8' );
+            $data = htmlspecialchars( $data,  ENT_COMPAT, 'UTF-8' );
         endif;
 
         return $data;
