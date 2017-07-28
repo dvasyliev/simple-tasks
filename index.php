@@ -19,6 +19,10 @@ $registry->set( 'load', $loader );
 $db = new DB( DB_DRIVER, DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT );
 $registry->set( 'db', $db );
 
+// Создаем екземпляра класса для разных видов запросов и регистрируем его
+$request = new Request();
+$registry->set( 'request', $request );
+
 // Создаем екземпляр класса маршрутизатора и запускаем его
 $router = new Router();
 $router->start( $registry );
