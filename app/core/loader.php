@@ -22,14 +22,16 @@ final class Loader
             $controller = ucwords( $controller );
             $controllerName = str_replace( '/', '', $controller );
             $controllerClass = 'Controller' . $controllerName;
+            $controllerAction = "index";
 
             new $controllerClass( $this->registry );
 
-            $controllerAction = "index";
-
+            $output = "";
             if ( is_callable( array( $controllerClass, $controllerAction ) ) ):
-                call_user_func( array( $controllerClass, $controllerAction ) );
+                $output = call_user_func( array( $controllerClass, $controllerAction ) );
             endif;
+
+            return $output;
         else:
             trigger_error( 'Error: Could not load controller ' . $file . '!' );
         endif;
