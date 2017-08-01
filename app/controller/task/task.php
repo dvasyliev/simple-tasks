@@ -11,7 +11,7 @@ class ControllerTaskTask extends Controller
         // Формирование переменных для постраничной навигации
         $total = $this->model_task_task->getTaskTotal();
         $page = isset( $this->request->get[ "page" ] ) ? $this->request->get[ "page" ] : 1;
-        $limit = 5;
+        $limit = 3;
 
         // Формирование фильтров для страницы
         $filters = array(
@@ -58,7 +58,8 @@ class ControllerTaskTask extends Controller
             'task-pagination',
             BASE_URI . "tasks" . $this->request->get[ "path" ] . "?page={page}",
             $total,
-            $page
+            $page,
+            $limit
         );
         $data[ "pagination" ] = $pagination->render();
 
