@@ -14,12 +14,12 @@ class Pagination
     private $text_prev = '<';
     private $text_next = '>';
 
-    public function __construct( $css_class, $url = "", $total = 0, $page = 1, $limit = 5, $num_links = 8 )
+    public function __construct( $css_class, $url = "", $total = 0, $page = 1, $limit = 5, $num_links = 5 )
     {
         $this->css_class = $css_class;
         $this->total = $total;
         $this->page = $page < 1 ? 1 : $page;
-        $this->limit = !(int)$limit ? 5 : $limit;
+        $this->limit = $limit;
         $this->num_links = $num_links;
         $this->num_pages = ceil( $this->total / $this->limit );
         $this->url = $url;
