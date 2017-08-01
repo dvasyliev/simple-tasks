@@ -2,6 +2,7 @@
 
 class Pagination
 {
+    private $css_class;
     private $total;
     private $page;
     private $limit;
