@@ -53,3 +53,8 @@ body {
 .task-detail__list-item span {
     margin-right: 8px;
 }
+
+.task-pagination {
+    display: block;
+    text-align: center;
+}

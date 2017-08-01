@@ -19,6 +19,8 @@
     </div>
 
     <?php include __DIR__ . '/parts/task-list.php'; ?>
+
+    <?= $pagination ?>
 </div>
 
 <?php include __DIR__ . '/parts/task-add-modal.php' ?>

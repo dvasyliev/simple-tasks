@@ -8,8 +8,19 @@ class ControllerTaskTask extends Controller
         // Загрузка модели для задач
         $this->load->model( "task/task" );
 
+        // Формирование переменных для постраничной навигации
+        $total = $this->model_task_task->getTaskTotal();
+        $page = isset( $this->request->get[ "page" ] ) ? $this->request->get[ "page" ] : 1;
+        $limit = 5;
+
+        // Формирование фильтров для страницы
+        $filters = array(
+            'start' => ( $page - 1 ) * $limit,
+            'limit' => $limit
+        );
+
         // Получение задач
-        $tasks = $this->model_task_task->getTasks();
+        $tasks = $this->model_task_task->getTasks( $filters );
         foreach( $tasks as $key => $task ):
             $task = array(
                 "id_task"           => $task[ "id_task" ],
@@ -41,6 +52,15 @@ class ControllerTaskTask extends Controller
             3 => 'warning',
             4 => 'success',
         );
+
+        // Формирование постраничной навигации
+        $pagination = new Pagination(
+            'task-pagination',
+            BASE_URI . "tasks" . $this->request->get[ "path" ] . "?page={page}",
+            $total,
+            $page
+        );
+        $data[ "pagination" ] = $pagination->render();
 
         $data[ "error" ][ "login" ] = $this->error[ "login" ] ? $this->error[ "login" ] : "";
         $data[ "error" ][ "email" ] = $this->error[ "email" ] ? $this->error[ "email" ] : "";
