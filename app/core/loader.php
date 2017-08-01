@@ -69,9 +69,13 @@ final class Loader
             // Преобразовуем масив данных в переменные
             extract( $data );
 
-            include $file;
+            ob_start();
+            require $file;
+            $output = ob_get_contents();
         else:
             trigger_error( 'Error: Could not load template ' . $file . '!' );
         endif;
+
+        return $output;
     }
 }
