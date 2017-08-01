@@ -9,7 +9,7 @@ require_once DIR_CORE . '/router.php';
 // Подключаем класс загрузчика
 require_once DIR_CORE . '/loader.php';
 
-// Подключение класса для обработки запросов
+// Подключение других классов
 require_once DIR_CORE . '/request.php';
 
 // Подключаем классы для работы с базой данных
