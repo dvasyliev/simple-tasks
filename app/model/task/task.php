@@ -69,6 +69,23 @@ class ModelTaskTask extends Model
     {
         $sql_with_filters = "";
 
+        $data_sort = array(
+            "id_task",
+            "id_task_status",
+            "login",
+            "email"
+        );
+
+        if( isset( $filters[ "sort" ] ) && in_array( $filters[ "sort" ], $data_sort ) ):
+            $filters[ "order" ] = $filters[ "order" ] === "DESC" ? "DESC" : "ASC";
+
+            if( $filters[ "sort" ] === "login" || $filters[ "sort" ] === "email" ):
+                $sql_with_filters .= " ORDER BY LCASE(t." . $filters[ "sort" ] . ") " . $filters[ "order" ];
+            else:
+                $sql_with_filters .= " ORDER BY t." . $filters[ "sort" ] . " " . $filters[ "order" ];
+            endif;
+        endif;
+
         if( isset( $filters[ "start" ] ) || isset( $filters[ "limit" ] ) ):
             $filters[ "start" ] = $filters[ "start" ] < 0 ? 0 : $filters[ "start" ];
             $filters[ "limit" ] = $filters[ "limit" ] < 1 ? 5 : $filters[ "limit" ];

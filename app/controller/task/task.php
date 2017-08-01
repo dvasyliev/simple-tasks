@@ -10,11 +10,15 @@ class ControllerTaskTask extends Controller
 
         // Формирование переменных для постраничной навигации
         $total = $this->model_task_task->getTaskTotal();
+        $sort = isset( $this->request->get[ "sort" ] ) ? $this->request->get[ "sort" ] : "id_task";
+        $order = isset( $this->request->get[ "order" ] ) ? $this->request->get[ "order" ] : "ASC";
         $page = isset( $this->request->get[ "page" ] ) ? $this->request->get[ "page" ] : 1;
         $limit = 3;
 
         // Формирование фильтров для страницы
         $filters = array(
+            'sort' => $sort,
+            'order' => $order,
             'start' => ( $page - 1 ) * $limit,
             'limit' => $limit
         );
