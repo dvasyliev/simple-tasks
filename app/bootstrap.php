@@ -11,6 +11,7 @@ require_once DIR_CORE . '/loader.php';
 
 // Подключение других классов
 require_once DIR_CORE . '/request.php';
+require_once DIR_CORE . '/pagination.php';
 
 // Подключаем классы для работы с базой данных
 require_once DIR_CORE . '/database/mpdo.php';
