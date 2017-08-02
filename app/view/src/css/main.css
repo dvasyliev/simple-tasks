@@ -3,6 +3,20 @@ body {
     padding-bottom: 20px;
 }
 
+.task-sort {
+    display: table;
+    margin: 0 0 20px auto;
+}
+
+.task-sort__item {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.task-sort__item:not(:last-child) {
+    padding-right: 20px;
+}
+
 .task-detail__panel-heading {
     position: relative;
 }
@@ -57,4 +71,23 @@ body {
 .task-pagination {
     display: block;
     text-align: center;
+}
+
+.task-pagination .active {
+    pointer-events: none;
+}
+
+@media screen and (max-width: 800px) {
+    .task-detail__body {
+        width: 100%;
+    }
+
+    .task-detail__image-block,
+    .task-detail__content-block {
+        display: table-row;
+    }
+
+    .task-detail__image {
+        margin: 0 auto 16px;
+    }
 }

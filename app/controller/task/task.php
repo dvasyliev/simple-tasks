@@ -23,8 +23,43 @@ class ControllerTaskTask extends Controller
             'limit' => $limit
         );
 
+        // Формирование параметров сортировки
+        $data[ "sort_params" ] = array(
+            "id_task" => array(
+                "table_prefix" => "t",
+                "name" => "Номер задачи",
+                "active" => "id_task" === $sort,
+            ),
+            "id_task_status" => array(
+                "table_prefix" => "t",
+                "name" => "Статус задачи",
+                "active" => "id_task_status" === $sort,
+            ),
+            "login" => array(
+                "table_prefix" => "t",
+                "name" => "Логин",
+                "active" => "login" === $sort,
+            ),
+            "email" => array(
+                "table_prefix" => "t",
+                "name" => "Email",
+                "active" => "email" === $sort,
+            ),
+        );
+
+        $data[ "order_params" ] = array(
+            "ASC" => array(
+                "icon" => "glyphicon glyphicon-sort-by-attributes",
+                "active" => "ASC" === $order,
+            ),
+            "DESC" => array(
+                "icon" => "glyphicon glyphicon-sort-by-attributes-alt",
+                "active" => "DESC" === $order,
+            ),
+        );
+
         // Получение задач
-        $tasks = $this->model_task_task->getTasks( $filters );
+        $tasks = $this->model_task_task->getTasks( $filters, $data[ "sort_params" ] );
         foreach( $tasks as $key => $task ):
             $task = array(
                 "id_task"           => $task[ "id_task" ],

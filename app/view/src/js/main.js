@@ -1,6 +1,9 @@
 $(document).ready(function () {
-    var $taskAddForm = $('#task-add-form'),
+    var $taskSortBlock = $('.task-sort'),
+        $taskAddForm = $('#task-add-form'),
         $taskUpdateForm = $('#task-update-form');
+
+
 
     // Открытие модального окна для редактирования задачи
     $('body').on('click', '.task-detail__button-edit', function () {
@@ -79,4 +82,35 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Сортировка по параметрам
+    $taskSortBlock.on('click', 'button', function () {
+        $(this).siblings('.btn-primary').toggleClass('btn-default btn-primary');
+        $(this).toggleClass('btn-default btn-primary');
+
+        var params = {
+                'sort': $taskSortBlock.find('.btn-primary[data-sort]').data('sort'),
+                'order': $taskSortBlock.find('.btn-primary[data-order]').data('order'),
+            },
+            searchString = getSearchString(params);
+
+        window.location.href = searchString;
+    });
+
+    // Функция заменяет старые поисковые параметры на новые
+    // которые ей переданы и возвращает новую поисковую строку
+    function getSearchString( args ) {
+        var searchString = window.location.search,
+            paramsArray = searchString.slice(1).split('&');
+
+        paramsArray.forEach(function (param) {
+            var paramKeyValue = param.split('=');
+
+            if(args[paramKeyValue[0]] === undefined) {
+                args[paramKeyValue[0]] = paramKeyValue[1];
+            }
+        });
+
+        return '?' + $.param(args);
+    }
 });

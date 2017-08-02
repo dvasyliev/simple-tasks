@@ -18,6 +18,32 @@
         <h1>Список задач <small>(добавляйте задачи без регистрации)</small></h1>
     </div>
 
+    <div class="task-sort">
+        <div class="task-sort__item">Сортировать по:</div>
+        <div class="task-sort__item">
+            <div class="btn-group">
+                <?php foreach( $sort_params as $key => $sort_param ): ?>
+                    <button type="button" 
+                            class="btn <?= $sort_param[ "active"] ? "btn-primary" : "btn-default" ?>" 
+                            data-sort="<?= $key ?>">
+                        <?= $sort_param[ "name" ] ?>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="task-sort__item">
+            <div class="btn-group">
+                <?php foreach( $order_params as $key => $order_param ): ?>
+                    <button type="button"
+                            class="btn <?= $order_param[ "active"] ? "btn-primary" : "btn-default" ?>"
+                            data-order="<?= $key ?>">
+                        <span class="<?= $order_param[ "icon" ] ?>"></span>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
     <?php include __DIR__ . '/parts/task-list.php'; ?>
 
     <?= $pagination ?>
