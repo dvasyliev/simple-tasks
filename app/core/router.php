@@ -24,8 +24,12 @@ class Router
     {
         $uri = $this->getUri();
         $routes_keys = array_keys( $this->routes );
+        
+        // Откидаем все поисковые параметры, что бы сравнить
+        // маршрут с маршрутами в масиве
+        preg_match( "/[^\?]+/", $uri, $uri_matches );
 
-        if( in_array( $uri, $routes_keys ) ):
+        if( in_array( $uri_matches[0], $routes_keys ) ):
             // Перебираем все полученные маршруты
             foreach ( $this->routes as $uriPattern => $route ):
                 // Проверяем существует ли текуший маршрут в этом масиве
