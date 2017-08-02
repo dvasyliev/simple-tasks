@@ -1,5 +1,4 @@
 <?php
-
 ini_set( 'display_errors', 1 );
 
 // Подключаем файл конфигурации
@@ -18,6 +17,10 @@ $registry->set( 'load', $loader );
 // Создаем экземпляр класса базы данных и регистрируем его
 $db = new DB( DB_DRIVER, DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT );
 $registry->set( 'db', $db );
+
+// Создаем екземпляра класса для адресов страниц и регистрируем его
+$url = new Url( DOMAIN );
+$registry->set( 'url', $url );
 
 // Создаем екземпляра класса для разных видов запросов и регистрируем его
 $request = new Request();
