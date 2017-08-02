@@ -12,7 +12,7 @@ define( 'DIR_TEMPLATE',     DIR_VIEW . '/template' );
 define( 'DIR_CONFIG',       DIR_ROOT . '/config' );
 define( 'DIR_IMAGE',        DIR_ROOT . '/uploads' );
 
-define( 'BASE_URI' ,        'http://simple-tasks/');
+define( 'DOMAIN' ,          'http://simple-tasks/');
 
 // Database configuration
 define( 'DB_DRIVER',        'mpdo' );
