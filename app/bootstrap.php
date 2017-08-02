@@ -24,3 +24,4 @@ require_once DIR_CORE . '/response.php';
 require_once DIR_CORE . '/session.php';
 require_once DIR_CORE . '/user.php';
 require_once DIR_CORE . '/pagination.php';
+require_once DIR_CORE . '/image.php';
