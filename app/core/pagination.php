@@ -22,7 +22,7 @@ class Pagination
         $this->limit = $limit;
         $this->num_links = $num_links;
         $this->num_pages = ceil( $this->total / $this->limit );
-        $this->url = $url;
+        $this->url = str_replace( "%7Bpage%7D", "{page}", $url );
     }
 
     public function render()
