@@ -28,6 +28,8 @@ final class mPDO
 
     public function prepare( $sql )
     {
+        $this->statement = $this->pdo->prepare( "SET SESSION wait_timeout = 1" );
+        $this->statement->execute();
         // Подготовка запроса к выполнению и возвращение объекта,
         // который содержит подготовленный запрос к базе данных
         $this->statement = $this->pdo->prepare( $sql );
