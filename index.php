@@ -26,6 +26,18 @@ $registry->set( 'url', $url );
 $request = new Request();
 $registry->set( 'request', $request );
 
+// Создаем екземпляра класса для разных видов ответов и регистрируем его
+$response = new Response();
+$registry->set( 'response', $response );
+
+// Создаем екземпляра класса для сессий пользователей и регистрируем его
+$session = new Session();
+$registry->set( 'session', $session );
+
+// Создаем екземпляра класса для сессий пользователей и регистрируем его
+$user = new User( $registry );
+$registry->set( 'user', $user );
+
 // Создаем екземпляр класса маршрутизатора и запускаем его
 $router = new Router();
 $router->start( $registry );

@@ -20,4 +20,7 @@ require_once DIR_CORE . '/database.php';
 // Подключение других классов
 require_once DIR_CORE . '/url.php';
 require_once DIR_CORE . '/request.php';
+require_once DIR_CORE . '/response.php';
+require_once DIR_CORE . '/session.php';
+require_once DIR_CORE . '/user.php';
 require_once DIR_CORE . '/pagination.php';
