@@ -9,15 +9,17 @@
                         <?= $task['status'] ?>
                     </span>
 
-                    <button class="task-detail__button-delete">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </button>
+                    <?php if( $is_admin ): ?>
+                        <button class="task-detail__button-delete">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
 
-                    <button class="task-detail__button-edit"
-                            data-toggle="modal"
-                            data-target="#taskUpdateModal">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </button>
+                        <button class="task-detail__button-edit"
+                                data-toggle="modal"
+                                data-target="#taskUpdateModal">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
+                    <?php endif; ?>
                 </h4>
             </div>
 

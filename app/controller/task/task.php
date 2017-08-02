@@ -5,6 +5,10 @@ class ControllerTaskTask extends Controller
 
     public function index()
     {
+        $data[ "is_logged" ] = $this->user->isLogged();
+        $data[ "is_admin" ] = $this->user->isAdmin();
+        $data[ "login" ] = $this->user->getLogin();
+
         // Загрузка модели для задач
         $this->load->model( "task/task" );
 
