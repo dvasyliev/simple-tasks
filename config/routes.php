@@ -6,6 +6,16 @@ return array(
         "controller" => "account",
         "action" => "index",
     ),
+    "admin/login" => array(
+        "path" => "account",
+        "controller" => "account",
+        "action" => "login",
+    ),
+    "admin/logout" => array(
+        "path" => "account",
+        "controller" => "account",
+        "action" => "logout",
+    ),
 
     "tasks" => array(
         "path" => "task",
