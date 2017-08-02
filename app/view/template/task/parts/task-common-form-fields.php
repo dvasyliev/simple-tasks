@@ -5,7 +5,7 @@
                name="login"
                class="form-control"
                id="login"
-               placeholder="Ведите имя">
+               placeholder="Ведите имя" required>
     </div>
 </div>
 
@@ -16,7 +16,7 @@
                name="email"
                class="form-control"
                id="email"
-               placeholder="Введите mail">
+               placeholder="Введите mail" required>
     </div>
 </div>
 
@@ -36,6 +36,6 @@
         <textarea name="text"
                   class="form-control"
                   rows="10"
-                  placeholder="Введите описание"></textarea>
+                  placeholder="Введите описание" required></textarea>
     </div>
 </div>

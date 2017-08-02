@@ -22,7 +22,7 @@
                         <div class="col-sm-10">
                             <select class="form-control"
                                     id="status"
-                                    name="id_task_status">
+                                    name="id_task_status" required>
                                 <?php foreach ($statuses as $status): ?>
                                     <option value="<?= $status["id_task_status"] ?>">
                                         <?= $status["status"] ?>
