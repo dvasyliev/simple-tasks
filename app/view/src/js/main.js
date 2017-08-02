@@ -108,15 +108,16 @@ $(document).ready(function () {
     // которые ей переданы и возвращает новую поисковую строку
     function getSearchString( args ) {
         var searchString = window.location.search,
-            paramsArray = searchString.slice(1).split('&');
+            paramsArray = searchString ? searchString.slice(1).split('&') : [];
 
-        paramsArray.forEach(function (param) {
-            var paramKeyValue = param.split('=');
-
-            if(args[paramKeyValue[0]] === undefined) {
-                args[paramKeyValue[0]] = paramKeyValue[1];
-            }
-        });
+        if(paramsArray.length) {
+            paramsArray.forEach(function (param) {
+                var paramKeyValue = param.split('=');
+                if (args[paramKeyValue[0]] === undefined) {
+                    args[paramKeyValue[0]] = paramKeyValue[1];
+                }
+            });
+        }
 
         return '?' + $.param(args);
     }
