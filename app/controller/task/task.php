@@ -13,7 +13,7 @@ class ControllerTaskTask extends Controller
         $sort = isset( $this->request->get[ "sort" ] ) ? $this->request->get[ "sort" ] : "id_task";
         $order = isset( $this->request->get[ "order" ] ) ? $this->request->get[ "order" ] : "ASC";
         $page = isset( $this->request->get[ "page" ] ) ? $this->request->get[ "page" ] : 1;
-        $limit = 3;
+        $limit = isset( $this->request->get[ "limit" ] ) ? $this->request->get[ "limit" ] : 3;
 
         // Формирование фильтров для страницы
         $filters = array(
@@ -58,9 +58,10 @@ class ControllerTaskTask extends Controller
         );
 
         // Формирование постраничной навигации
+        $params = array_merge( $this->request->get, array( "page" => "{page}" ) );
         $pagination = new Pagination(
             'task-pagination',
-            BASE_URI . "tasks" . $this->request->get[ "path" ] . "?page={page}",
+            $this->url->link( "tasks", $params ),
             $total,
             $page,
             $limit
