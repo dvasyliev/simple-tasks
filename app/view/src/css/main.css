@@ -1,6 +1,25 @@
 body {
-    padding-top: 20px;
+    padding-top: 80px;
     padding-bottom: 20px;
+}
+
+.navbar {
+    padding: 5px 0;
+}
+
+.navbar-btn {
+    margin: 8px 0;
+    float: right;
+}
+
+.navbar-text {
+    float: right;
+}
+
+.form-signin {
+    max-width: 400px;
+    padding: 15px;
+    margin: 5% auto 0;
 }
 
 .task-sort {
@@ -77,7 +96,11 @@ body {
     pointer-events: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 767px) {
+    .navbar-btn {
+        margin-right: 16px;
+    }
+
     .task-detail__body {
         width: 100%;
     }
@@ -89,5 +112,11 @@ body {
 
     .task-detail__image {
         margin: 0 auto 16px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-header {
+        width: 100%;
     }
 }
