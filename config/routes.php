@@ -1,6 +1,12 @@
 <?php
 
 return array(
+    "admin" => array(
+        "path" => "account",
+        "controller" => "account",
+        "action" => "index",
+    ),
+
     "tasks" => array(
         "path" => "task",
         "controller" => "task",
@@ -21,4 +27,10 @@ return array(
         "controller" => "task",
         "action" => "delete",
     ),
+
+    "page404" => array(
+        "path" => "error",
+        "controller" => "page404",
+        "action" => "index",
+    )
 );
