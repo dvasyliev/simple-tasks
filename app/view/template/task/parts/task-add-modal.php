@@ -10,20 +10,34 @@
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal"
-                      id="task-add-form"
-                      action="tasks/add"
-                      method="POST"
-                      enctype="multipart/form-data">
-                    <?php include __DIR__ . '/task-common-form-fields.php' ?>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#task-content" id="task-content-tab" data-toggle="tab">Задача</a></li>
+                    <li><a href="#task-preview-content" id="task-preview-content-tab" data-toggle="tab">Предварительный просмотр</a></li>
+                </ul>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default" id="task-button-add">Добавить</button>
-                            <button type="submit" class="btn btn-default" data-dismiss="modal" aria-label="Close">Отмена</button>
-                        </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="task-content">
+                        <form class="form-horizontal"
+                              id="task-add-form"
+                              action="tasks/add"
+                              method="POST"
+                              enctype="multipart/form-data">
+                            <?php include __DIR__ . '/task-common-form-fields.php' ?>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-default" id="task-button-add">Добавить</button>
+                                    <button type="submit" class="btn btn-default" data-dismiss="modal" aria-label="Close">Отмена</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+
+                    <div class="tab-pane" id="task-preview-content">
+                        <?php include __DIR__ . '/task-detail-preview.php' ?>
+                    </div>
+                </div>
             </div>
 
         </div>

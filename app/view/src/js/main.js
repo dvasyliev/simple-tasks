@@ -1,9 +1,8 @@
 $(document).ready(function () {
     var $taskSortBlock = $('.task-sort'),
         $taskAddForm = $('#task-add-form'),
+        $taskPreviewBlock = $('#task-preview-content'),
         $taskUpdateForm = $('#task-update-form');
-
-
 
     // Открытие модального окна для редактирования задачи
     $('body').on('click', '.task-detail__button-edit', function () {
@@ -44,6 +43,14 @@ $(document).ready(function () {
         });
     });
 
+    $('#task-preview-content-tab').on('click', function () {
+        var data = $taskAddForm.serializeArray();
+
+        data.forEach(function (item) {
+            $taskPreviewBlock.find('.task-detail__' + item.name).html(item.value)
+        });
+    });
+
     // Ajax запрос на редактирование задачи
     $taskUpdateForm.on('submit', function (event) {
         event.preventDefault();
@@ -74,8 +81,8 @@ $(document).ready(function () {
             url: 'tasks/delete',
             type: 'POST',
             data: 'id_task=' + taskId,
-            success: function (json) {
-                $task.remove();
+            success: function () {
+                window.location.href = "http://simple-tasks/tasks";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
