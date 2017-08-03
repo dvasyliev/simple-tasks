@@ -44,7 +44,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function () {
-                window.location.href = "http://simple-tasks/tasks";
+                window.location.href = window.location.origin + '/tasks';
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -73,7 +73,7 @@ $(document).ready(function () {
             type: 'POST',
             data: 'id_task=' + taskId + '&' + data,
             success: function () {
-                window.location.href = "http://simple-tasks/tasks";
+                window.location.href = window.location.origin + '/tasks';
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -91,7 +91,7 @@ $(document).ready(function () {
             type: 'POST',
             data: 'id_task=' + taskId,
             success: function () {
-                window.location.href = "http://simple-tasks/tasks";
+                window.location.href = window.location.origin + '/tasks';
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
