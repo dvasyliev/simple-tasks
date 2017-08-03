@@ -20,10 +20,10 @@ final class mPDO
         }
 
         // Установка кодировки UTF-8
-        $this->pdo-exec( 'SET NAMES \'utf8\'' );
-        $this->pdo-exec( 'SET CHARACTER SET utf8' );
-        $this->pdo-exec( 'SET CHARACTER_SET_CONNECTION=uft8' );
-        $this->pdo-exec( 'SET SQL_MODE = \'\'' );
+//        $this->pdo-exec( 'SET NAMES \'utf8\'' );
+//        $this->pdo-exec( 'SET CHARACTER SET utf8' );
+//        $this->pdo-exec( 'SET CHARACTER_SET_CONNECTION=uft8' );
+//        $this->pdo-exec( 'SET SQL_MODE = \'\'' );
     }
 
     public function prepare( $sql )

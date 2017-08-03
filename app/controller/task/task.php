@@ -84,7 +84,6 @@ class ControllerTaskTask extends Controller
             $data[ "statuses" ][] = array(
                 "id_task_status"    => $status[ "id_task_status" ],
                 "status"            => $status[ "status" ],
-                "label"             => $status[ "label" ],
             );
         endforeach;
 
