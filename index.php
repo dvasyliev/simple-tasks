@@ -1,11 +1,11 @@
 <?php
-ini_set( 'display_errors', 1 );
-
 // Подключаем файл конфигурации
 require_once 'config.php';
 
 // Подключаем файл стартового загрузчика
 require_once 'app/bootstrap.php';
+
+ini_set('display_errors','Off');
 
 // Создаем экземпляр класса регистратора
 $registry = new Registry();
