@@ -117,7 +117,18 @@ class ControllerTaskTask extends Controller
     public function add()
     {
         if( $this->request->server[ "REQUEST_METHOD" ] === "POST" && $this->validate() ):
-            $this->model_task_task->addTask( $this->request->post );
+            if( $this->request->files && is_uploaded_file( $this->request->files[ "image" ][ "tmp_name" ] ) ):
+                $image = new Image( $this->request->files[ "image" ] );
+                $task_image = $image->getImage( 320, 240 );
+
+                $task_fields = array_merge(
+                    array( "image" => $task_image ),
+                    $this->request->post
+                );
+
+                $this->model_task_task->addTask( $task_fields );
+            endif;
+
         endif;
     }
 

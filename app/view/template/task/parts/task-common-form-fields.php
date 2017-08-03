@@ -26,7 +26,7 @@
         <input type="file"
                class="form-control"
                id="image"
-               name="image">
+               name="image" required>
     </div>
 </div>
 

@@ -21,8 +21,7 @@
                         <form class="form-horizontal"
                               id="task-add-form"
                               action="tasks/add"
-                              method="POST"
-                              enctype="multipart/form-data">
+                              method="POST">
                             <?php include __DIR__ . '/task-common-form-fields.php' ?>
 
                             <div class="form-group">

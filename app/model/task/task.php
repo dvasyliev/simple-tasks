@@ -53,6 +53,7 @@ class ModelTaskTask extends Model
              SET id_task_status = '" . (int)$id_task_status . "' ,
                  login = '" . $this->db->escape( $data[ "login" ] ) . "' ,
                  email = '" . $this->db->escape( $data[ "email" ] ) . "' ,
+                 image = '" . $this->db->escape( $data[ "image" ] ) . "' ,
                  text = '" . $this->db->escape( $data[ "text" ] ) . "'"
         );
     }

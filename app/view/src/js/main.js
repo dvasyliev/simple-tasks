@@ -4,6 +4,8 @@ $(document).ready(function () {
         $taskPreviewBlock = $('#task-preview-content'),
         $taskUpdateForm = $('#task-update-form');
 
+    $taskUpdateForm.find('input[name="image"]').prop('disabled', true);
+
     // Открытие модального окна для редактирования задачи
     $('body').on('click', '.task-detail__button-edit', function () {
         var $task = $(this).parents('.task-detail'),
@@ -27,13 +29,20 @@ $(document).ready(function () {
     $taskAddForm.on('submit', function (event) {
         event.preventDefault();
 
-        var data = $(this).serialize(),
-            action = $(this).attr('action');
+        var action = $(this).attr('action'),
+            formData = new FormData(this);
+
+        formData.append('login', $(this).find('input[name="login"]')[0].value);
+        formData.append('email', $(this).find('input[name="email"]')[0].value);
+        formData.append('image', $(this).find('input[name="image"]')[0].files[0]);
+        formData.append('text', $(this).find('textarea[name="text"]')[0].value);
 
         $.ajax({
             url: action,
             type: 'POST',
-            data: data,
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function () {
                 window.location.href = "http://simple-tasks/tasks";
             },
@@ -55,9 +64,9 @@ $(document).ready(function () {
     $taskUpdateForm.on('submit', function (event) {
         event.preventDefault();
 
-        var data = $(this).serialize(),
+        var taskId = $(this).data('task-id'),
             action = $(this).attr('action'),
-            taskId = $(this).data('task-id');
+            data = $(this).serialize();
 
         $.ajax({
             url: action,
