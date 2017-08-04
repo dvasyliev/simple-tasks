@@ -4,7 +4,7 @@ $(document).ready(function () {
         $taskPreviewBlock = $('#task-preview-content'),
         $taskUpdateForm = $('#task-update-form');
 
-    $taskUpdateForm.find('input[name="image"]').prop('disabled', true);
+    $taskUpdateForm.find('input[name="image"]').prop('disabled', true).parents('.form-group').hide();
 
     // Открытие модального окна для редактирования задачи
     $('body').on('click', '.task-detail__button-edit', function () {
